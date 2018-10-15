@@ -8,7 +8,7 @@ namespace Grades
     {
         public GradeBook()
         {
-            _name = "Empty";
+            //_name = "Empty";
             grades = new List<float>();
         }
 
@@ -48,19 +48,23 @@ namespace Grades
             }
             set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (String.IsNullOrEmpty(value))
                 {
-                    if(_name != value)
-                    {
-                        NameChangedEventArgs args = new NameChangedEventArgs();
-                        args.ExistingName = _name;
-                        args.NewName = value;
-
-                        NameChanged(this, args);
-                    }
-
-                    _name = value;
+                    throw new ArgumentException("Name cannot be empty or null");
                 }
+
+
+                if (_name != value)
+                {
+                    NameChangedEventArgs args = new NameChangedEventArgs();
+                    args.ExistingName = _name;
+                    args.NewName = value;
+
+                    NameChanged(this, args);
+                }
+
+                _name = value;
+
             }
         }
 

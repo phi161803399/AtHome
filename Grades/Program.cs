@@ -7,25 +7,17 @@ namespace Grades
     {
         static void Main(string[] args)
         {
-            GradeBook book = new GradeBook();
-            //book.Name = null;
-            book.NameChanged += OnNameChanged;
-            GetBookName(book);
-
-
+            GradeBook book = new ThrowAwayGradeBook();
             // OR
-            //book.NameChanged += new NameChangedDelegate(OnNameChanged);
+            //GradeBook book = new GradeBook();
 
-            //book.Name = "Scott's Grade Book";
-            //book.Name = "Grade Book";
+            // EVENT HANDLER
+            book.NameChanged += OnNameChanged;
 
+
+            //GetBookName(book);
             AddGrades(book);
-
             SaveGrades(book);
-
-
-            //book.WriteGrades(Console.Out);
-
             WriteResults(book);
         }
 
@@ -41,6 +33,7 @@ namespace Grades
 
         private static void SaveGrades(GradeBook book)
         {
+            //book.WriteGrades(Console.Out);
             /*
             // TO WRITE DATA TO A FILE
             StreamWriter outputFile = File.CreateText("grades.txt");

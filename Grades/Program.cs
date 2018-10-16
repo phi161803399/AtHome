@@ -7,9 +7,7 @@ namespace Grades
     {
         static void Main(string[] args)
         {
-            GradeBook book = new ThrowAwayGradeBook();
-            // OR
-            //GradeBook book = new GradeBook();
+            GradeTracker book = CreateGradeBook();
 
             // EVENT HANDLER
             book.NameChanged += OnNameChanged;
@@ -21,7 +19,12 @@ namespace Grades
             WriteResults(book);
         }
 
-        private static void WriteResults(GradeBook book)
+        private static ThrowAwayGradeBook CreateGradeBook()
+        {
+            return new ThrowAwayGradeBook();
+        }
+
+        private static void WriteResults(GradeTracker book)
         {
             GradeStatistics stats = book.ComputeStatistics();
             Console.WriteLine(book.Name);
@@ -31,7 +34,7 @@ namespace Grades
             WriteResult(stats.Description, stats.LetterGrade);
         }
 
-        private static void SaveGrades(GradeBook book)
+        private static void SaveGrades(GradeTracker book)
         {
             //book.WriteGrades(Console.Out);
             /*
@@ -47,14 +50,14 @@ namespace Grades
             }
         }
 
-        private static void AddGrades(GradeBook book)
+        private static void AddGrades(GradeTracker book)
         {
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
         }
 
-        private static void GetBookName(GradeBook book)
+        private static void GetBookName(GradeTracker book)
         {
             try
             {
